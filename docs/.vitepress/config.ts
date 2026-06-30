@@ -13,6 +13,7 @@ export default defineConfig({
       { text: 'Guided Hunt', link: '/guided-hunt-flow/program-baru' },
       { text: 'Feature Map', link: '/feature-map/' },
       { text: 'Endpoint Scenarios', link: '/endpoint-scenarios/' },
+      { text: 'Real Case', link: '/real-case-simulation/' },
       { text: 'Bug Tree', link: '/bug-tree/' },
       { text: 'Output', link: '/output-encyclopedia/sql-errors' }
     ],
@@ -60,6 +61,14 @@ export default defineConfig({
           { text: 'Upload File', link: '/endpoint-scenarios/upload-file' },
           { text: 'Team Role', link: '/endpoint-scenarios/team-role' },
           { text: 'Coupon Apply', link: '/endpoint-scenarios/coupon-apply' }
+        ]
+      },
+      {
+        text: 'Real Case Simulation',
+        items: [
+          { text: 'Overview', link: '/real-case-simulation/' },
+          { text: 'Toko Online', link: '/real-case-simulation/toko-online' },
+          { text: 'SaaS Team Workspace', link: '/real-case-simulation/saas-team-workspace' }
         ]
       },
       {
