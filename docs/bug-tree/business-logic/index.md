@@ -18,6 +18,25 @@ Business Logic
 └── Approval flow bypass
 ```
 
+## Klik untuk Belajar
+
+| Bug | Cocok untuk | Halaman |
+|---|---|---|
+| Price manipulation | checkout, order, payment amount | [Price Manipulation](./price-manipulation.md) |
+| Quantity manipulation | cart, order, stock, booking | [Quantity Manipulation](./quantity-manipulation.md) |
+| Coupon reuse | voucher, promo, coupon apply | [Coupon Reuse](./coupon-reuse.md) |
+| Workflow bypass | order, approval, verification, payment status | [Workflow Bypass](./workflow-bypass.md) |
+| Role/invite flow issue | team invite, role upgrade/downgrade | [SaaS Team Workspace Simulation](../../real-case-simulation/saas-team-workspace.md) |
+| Checkout flow issue | toko online, invoice, coupon | [Toko Online Simulation](../../real-case-simulation/toko-online.md) |
+
+## Mulai dari Feature
+
+| Feature ditemukan | Mulai dari sini |
+|---|---|
+| Invoice/order/checkout | [Feature Map: Invoice & Order](../../feature-map/invoice-order.md) |
+| Coupon endpoint | [Coupon Apply Scenario](../../endpoint-scenarios/coupon-apply.md) |
+| Team invite/role | [Feature Map: Team & Role](../../feature-map/team-role.md) |
+
 ## Kapan Curiga
 
 Fitur yang sering relevan:
@@ -47,57 +66,14 @@ Tanyakan:
 - Apakah status bisa dimanipulasi?
 ```
 
-## Contoh Case — Price Manipulation
+## Contoh Area
 
-Suspicious request body:
-
-```json
-{
-  "product_id": 10,
-  "quantity": 1,
-  "price": 1
-}
-```
-
-Expected secure behavior:
-
-```txt
-Server menghitung harga dari database dan mengabaikan price dari client.
-```
-
-Suspicious behavior:
-
-```txt
-Order dibuat dengan harga yang dikirim client.
-```
-
-## Contoh Case — Coupon Reuse
-
-Expected secure behavior:
-
-```txt
-Kupon sekali pakai tidak bisa digunakan lagi setelah sukses dipakai.
-```
-
-Suspicious behavior:
-
-```txt
-Kupon yang sama bisa digunakan berulang kali pada akun/order yang sama jika rules melarangnya.
-```
-
-## Contoh Case — Workflow Bypass
-
-Flow normal:
-
-```txt
-Create order → payment pending → paid → invoice issued
-```
-
-Suspicious behavior:
-
-```txt
-User bisa langsung mengubah status order menjadi paid tanpa pembayaran valid.
-```
+| Area | Expected secure behavior | Suspicious behavior |
+|---|---|---|
+| Harga checkout | Server menghitung harga dari database | Order mengikuti nilai harga dari client |
+| Kupon | Server memastikan kupon valid dan belum dipakai | Kupon terbatas bisa dipakai ulang |
+| Workflow | Server memaksa urutan step yang benar | Step akhir bisa dipanggil tanpa step sebelumnya |
+| Approval | Server validasi role approver | User tanpa izin bisa approve/change status |
 
 ## Catatan Aman
 
