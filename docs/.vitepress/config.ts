@@ -137,6 +137,13 @@ export default defineConfig({
         ]
       },
       {
+        text: 'Contribution',
+        items: [
+          { text: 'Content Template', link: '/contribution/content-template' },
+          { text: 'Content Style Guide', link: '/contribution/content-style-guide' }
+        ]
+      },
+      {
         text: 'Report Template',
         items: [
           { text: 'General', link: '/report-template/general' },
