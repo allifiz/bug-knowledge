@@ -28,6 +28,19 @@ Input/Output
 └── Host/header related issue concept
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| User enumeration | [User Enumeration](../bug-tree/authentication/user-enumeration.md) |
+| Reset token reusable | [Authentication](../bug-tree/authentication/index.md) |
+| Reset token not expired | [Authentication](../bug-tree/authentication/index.md) |
+| Token leaked in response | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+| Old session still valid after password reset | [Authentication](../bug-tree/authentication/index.md) |
+| Weak reset flow | [Authentication](../bug-tree/authentication/index.md) |
+| Error disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+| Host/header related issue concept | [Redirect Headers](../output-encyclopedia/redirect-headers.md) |
+
 ## Test Aman Awal
 
 ### 1. User enumeration via forgot password
