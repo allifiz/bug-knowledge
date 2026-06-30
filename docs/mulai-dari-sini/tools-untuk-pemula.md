@@ -1,152 +1,148 @@
 # Tools untuk Pemula
 
-Tidak semua bug bounty harus langsung memakai Burp Suite.
+Kamu tidak harus langsung memakai Burp Suite untuk mulai belajar bug bounty.
 
-Untuk pemula, yang paling penting adalah paham dulu:
+Di awal, yang perlu dipahami adalah alur dasarnya:
 
 ```txt
-request → response → status code → header → body → perubahan output
+request dikirim → server membalas → kita baca status code, header, body, dan perubahan output
 ```
 
-Tools hanya membantu melihat dan mengulang proses itu.
+Tools hanya membantu melihat proses itu dengan lebih jelas.
 
-## Level Tools
+## Urutan yang Enak untuk Belajar
 
-| Level | Tools | Cocok untuk |
+| Level | Tools | Dipakai saat |
 |---|---|---|
-| 1 | Browser biasa | login, register, redirect, file access, visual check |
-| 2 | Browser DevTools | melihat request/response, status code, header, payload |
-| 3 | API Client / curl | mengulang request, mengubah body/query secara manual |
-| 4 | Proxy Tool | intercept/modify request lebih nyaman |
+| 1 | Browser biasa | mengecek flow, tampilan, redirect, file public, pesan error |
+| 2 | Browser DevTools | melihat request, response, status code, header, payload |
+| 3 | API Client / curl | mengulang request dan mengubah parameter/body secara manual |
+| 4 | Proxy Tool | intercept dan modify request dengan workflow yang lebih nyaman |
 
 ## Level 1 — Browser Biasa
 
-Browser biasa cukup untuk banyak test awal.
+Banyak test awal bisa dimulai hanya dari browser.
 
-Cocok untuk:
+Contohnya:
 
-```txt
-- user enumeration sederhana
-- open redirect
-- file public access
-- reset token reusable
-- old session masih valid
-- flow bypass sederhana
-```
+- membandingkan pesan error login;
+- mencoba redirect ke domain netral;
+- membuka URL file lewat incognito;
+- memakai ulang link reset password milik sendiri;
+- mengecek apakah session lama masih aktif setelah password diganti.
 
-Contoh aktivitas:
+Alurnya sederhana:
 
 ```txt
-1. Buka halaman aplikasi.
-2. Coba flow normal sebagai user biasa.
-3. Bandingkan output normal dan output mencurigakan.
-4. Catat URL, pesan error, dan perubahan halaman.
+1. Pakai aplikasi seperti user biasa.
+2. Catat output normalnya.
+3. Lakukan perubahan kecil yang aman.
+4. Bandingkan output sebelum dan sesudah.
 ```
 
 ## Level 2 — Browser DevTools
 
-DevTools adalah tool paling penting untuk pemula.
+DevTools adalah tool pertama yang sebaiknya dikuasai.
 
-Buka dengan:
+Cara membukanya:
 
 ```txt
-Chrome/Edge/Firefox: F12
+F12
 atau klik kanan → Inspect
 ```
 
-Bagian yang sering dipakai:
+Bagian yang paling sering dipakai:
 
 | Tab | Fungsi |
 |---|---|
 | Network | melihat request dan response |
 | Elements | melihat HTML yang dirender |
-| Application | melihat cookie/localStorage/sessionStorage |
+| Application | melihat cookie, localStorage, dan sessionStorage |
 | Console | melihat error JavaScript |
+
+Kalau baru mulai, fokus dulu ke **Network**.
+
+Di sana kamu bisa melihat endpoint, method, status code, payload, response, dan header.
 
 ## Level 3 — API Client / curl
 
-Dipakai ketika kamu perlu mengulang request dengan lebih rapi.
+Setelah paham request normal, kamu bisa mengulang request dengan API Client atau curl.
 
 Contoh tools:
 
-```txt
-- Postman
-- Insomnia
-- curl
-```
+- Postman;
+- Insomnia;
+- curl.
 
-Cocok untuk:
+Ini berguna untuk case seperti:
 
-```txt
-- IDOR read/write
-- mass assignment
-- role tampering
-- reset password flow
-- coupon apply
-- upload/download API
-```
+- IDOR read/write;
+- mass assignment;
+- role tampering;
+- reset password flow;
+- coupon apply;
+- upload/download API.
+
+Gunakan dengan hati-hati. Ubah satu bagian saja, lalu bandingkan hasilnya.
 
 ## Level 4 — Proxy Tool
 
-Proxy tool membantu menangkap request dari browser, lalu mengubahnya sebelum dikirim ke server.
+Proxy tool membantu menangkap request dari browser, lalu mengubahnya sebelum request sampai ke server.
 
 Contoh tools:
 
-```txt
-- Burp Suite
-- Caido
-- OWASP ZAP
-```
+- Burp Suite;
+- Caido;
+- OWASP ZAP.
 
-Cocok untuk:
+Proxy tool berguna ketika kamu sudah mulai sering:
 
-```txt
-- mengubah request body dengan cepat
-- membandingkan request antar akun
-- melihat header/cookie/token
-- menyusun evidence teknis
-```
+- membandingkan request antar akun;
+- mengubah body request;
+- melihat cookie/token/header;
+- menyusun evidence teknis;
+- mengulang request dengan variasi kecil.
 
 ## Apakah Burp Wajib?
 
 Tidak selalu.
 
-Untuk belajar awal:
+Untuk awal, kombinasi ini sudah cukup:
 
 ```txt
-Browser + DevTools sudah cukup.
+Browser + DevTools
 ```
 
-Burp/Caido/ZAP berguna ketika kamu sudah paham request-response dan ingin workflow lebih cepat.
+Burp, Caido, atau ZAP baru terasa berguna setelah kamu paham apa itu request dan response. Kalau belum paham, proxy tool justru bisa terlihat membingungkan.
 
 ## Prinsip Aman Menggunakan Tools
 
 ```txt
-- Jangan brute force massal
-- Jangan enumerate data orang lain
-- Jangan memakai wordlist credential
-- Jangan mengirim request berlebihan
-- Gunakan akun testing sendiri
-- Ikuti scope dan rules program
+- Jangan brute force massal.
+- Jangan enumerate data orang lain.
+- Jangan memakai wordlist credential.
+- Jangan mengirim request berlebihan.
+- Gunakan akun testing sendiri.
+- Ikuti scope dan rules program.
 ```
 
-## Cara Memilih Tool
+## Memilih Tool yang Tepat
 
 | Situasi | Tool minimal |
 |---|---|
-| Mau lihat pesan error login | Browser |
-| Mau lihat status code dan response JSON | DevTools Network |
-| Mau ubah body request | API Client / Proxy |
-| Mau cek cookie/session | DevTools Application |
-| Mau cek redirect header | DevTools Network |
-| Mau akses URL file tanpa login | Browser incognito |
+| Melihat pesan error login | Browser |
+| Melihat status code dan response JSON | DevTools Network |
+| Mengubah body request | API Client / Proxy |
+| Mengecek cookie/session | DevTools Application |
+| Mengecek redirect header | DevTools Network |
+| Membuka URL file tanpa login | Browser incognito |
 
-## Kesimpulan
+## Intinya
 
-Mulai dari yang paling sederhana:
+Mulai dari yang ringan dulu:
 
 ```txt
 Browser → DevTools → API Client → Proxy Tool
 ```
 
-Jangan lompat ke tool berat sebelum paham apa yang sedang dilihat.
+Jangan buru-buru memakai tool berat sebelum paham apa yang sedang kamu lihat.
