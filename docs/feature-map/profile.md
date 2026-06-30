@@ -31,6 +31,20 @@ File
 └── Old avatar still accessible
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| IDOR read profile | [IDOR Read](../bug-tree/access-control/idor-read.md) |
+| IDOR update profile | [IDOR Write](../bug-tree/access-control/idor-write.md) |
+| Broken access control | [Access Control](../bug-tree/access-control/index.md) |
+| Stored XSS | [XSS — Theory to Real Case](../theory-to-real-case/xss.md) |
+| Mass assignment | [Mass Assignment](../bug-tree/access-control/mass-assignment.md) |
+| Excessive data exposure | [Access Control Response](../output-encyclopedia/access-control-response.md) |
+| Avatar public access | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Weak file validation | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Old avatar still accessible | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+
 ## Test Aman Awal
 
 ### 1. IDOR read
