@@ -36,6 +36,19 @@ Input Validation
 └── Error disclosure
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| User enumeration | [User Enumeration](../bug-tree/authentication/user-enumeration.md) |
+| Missing rate limit | [Authentication](../bug-tree/authentication/index.md) |
+| Weak account lockout | [Authentication](../bug-tree/authentication/index.md) |
+| Verbose error message | [User Enumeration](../bug-tree/authentication/user-enumeration.md) |
+| Session fixation | [Authentication](../bug-tree/authentication/index.md) |
+| Token/session not rotated | [Authentication](../bug-tree/authentication/index.md) |
+| SQLi indicator | [SQL Injection — Theory to Real Case](../theory-to-real-case/sql-injection.md) |
+| Error disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+
 ## Test Aman Awal
 
 ### 1. Error message comparison
