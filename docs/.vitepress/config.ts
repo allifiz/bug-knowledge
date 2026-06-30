@@ -12,8 +12,8 @@ export default defineConfig({
       { text: 'Mulai', link: '/mulai-dari-sini/' },
       { text: 'Guided Hunt', link: '/guided-hunt-flow/program-baru' },
       { text: 'Feature Map', link: '/feature-map/' },
+      { text: 'Endpoint Scenarios', link: '/endpoint-scenarios/' },
       { text: 'Bug Tree', link: '/bug-tree/' },
-      { text: 'Theory to Real Case', link: '/theory-to-real-case/sql-injection' },
       { text: 'Output', link: '/output-encyclopedia/sql-errors' }
     ],
     sidebar: [
@@ -47,6 +47,19 @@ export default defineConfig({
           { text: 'Invoice & Order', link: '/feature-map/invoice-order' },
           { text: 'Team & Role', link: '/feature-map/team-role' },
           { text: 'Export & Download', link: '/feature-map/export-download' }
+        ]
+      },
+      {
+        text: 'Endpoint Scenarios',
+        items: [
+          { text: 'Overview', link: '/endpoint-scenarios/' },
+          { text: 'GET /api/users/{id}', link: '/endpoint-scenarios/user-by-id' },
+          { text: 'PATCH /api/users/{id}', link: '/endpoint-scenarios/update-user' },
+          { text: 'POST /api/login', link: '/endpoint-scenarios/login' },
+          { text: 'Invoice Download', link: '/endpoint-scenarios/invoice-download' },
+          { text: 'Upload File', link: '/endpoint-scenarios/upload-file' },
+          { text: 'Team Role', link: '/endpoint-scenarios/team-role' },
+          { text: 'Coupon Apply', link: '/endpoint-scenarios/coupon-apply' }
         ]
       },
       {
