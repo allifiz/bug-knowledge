@@ -33,11 +33,11 @@ Input/Output
 | Bug | Buka halaman |
 |---|---|
 | User enumeration | [User Enumeration](../bug-tree/authentication/user-enumeration.md) |
-| Reset token reusable | [Authentication](../bug-tree/authentication/index.md) |
-| Reset token not expired | [Authentication](../bug-tree/authentication/index.md) |
-| Token leaked in response | [Stack Trace](../output-encyclopedia/stack-trace.md) |
-| Old session still valid after password reset | [Authentication](../bug-tree/authentication/index.md) |
-| Weak reset flow | [Authentication](../bug-tree/authentication/index.md) |
+| Reset token reusable | [Reset Token Reusable](../bug-tree/authentication/reset-token-reusable.md) |
+| Reset token not expired | [Reset Token Not Expired](../bug-tree/authentication/reset-token-not-expired.md) |
+| Token leaked in response | [Token Leaked in Response](../bug-tree/authentication/token-leaked-in-response.md) |
+| Old session still valid after password reset | [Old Session Valid After Reset](../bug-tree/authentication/old-session-valid-after-reset.md) |
+| Weak reset flow | [Weak Reset Flow](../bug-tree/authentication/weak-reset-flow.md) |
 | Error disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
 | Host/header related issue concept | [Redirect Headers](../output-encyclopedia/redirect-headers.md) |
 
