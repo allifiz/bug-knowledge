@@ -35,12 +35,12 @@ Business Logic
 
 | Bug | Buka halaman |
 |---|---|
-| Vertical privilege escalation | [Access Control](../bug-tree/access-control/index.md) |
+| Vertical privilege escalation | [Vertical Privilege Escalation](../bug-tree/access-control/vertical-privilege-escalation.md) |
 | Horizontal privilege issue | [IDOR Read](../bug-tree/access-control/idor-read.md) |
-| Role tampering | [Mass Assignment](../bug-tree/access-control/mass-assignment.md) |
-| Unauthorized member removal | [IDOR Write](../bug-tree/access-control/idor-write.md) |
-| Object action authorization | [Access Control](../bug-tree/access-control/index.md) |
-| Invite abuse | [Business Logic](../bug-tree/business-logic/index.md) |
+| Role tampering | [Role Tampering](../bug-tree/access-control/role-tampering.md) |
+| Unauthorized member removal | [Unauthorized Action](../bug-tree/access-control/unauthorized-action.md) |
+| Object action authorization | [Unauthorized Action](../bug-tree/access-control/unauthorized-action.md) |
+| Invite abuse | [Workflow Bypass](../bug-tree/business-logic/workflow-bypass.md) |
 | Reusing invite token | [SaaS Team Workspace Simulation](../real-case-simulation/saas-team-workspace.md) |
 | Role downgrade/upgrade bypass | [Team Role Scenario](../endpoint-scenarios/team-role.md) |
 
