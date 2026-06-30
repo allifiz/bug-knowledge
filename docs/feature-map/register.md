@@ -41,6 +41,19 @@ Input Validation
 └── Error disclosure
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| Email verification bypass | [Authentication](../bug-tree/authentication/index.md) |
+| Duplicate account issue | [User Enumeration](../bug-tree/authentication/user-enumeration.md) |
+| Weak password policy | [Authentication](../bug-tree/authentication/index.md) |
+| Role tampering | [Mass Assignment](../bug-tree/access-control/mass-assignment.md) |
+| Mass assignment | [Mass Assignment](../bug-tree/access-control/mass-assignment.md) |
+| Stored XSS | [XSS — Theory to Real Case](../theory-to-real-case/xss.md) |
+| SQLi indicator | [SQL Injection — Theory to Real Case](../theory-to-real-case/sql-injection.md) |
+| Error disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+
 ## Test Aman Awal
 
 ### 1. Role tampering / mass assignment
