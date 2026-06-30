@@ -46,6 +46,19 @@ Information Disclosure
 └── Stack trace
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| SQLi indicator | [SQL Injection — Theory to Real Case](../theory-to-real-case/sql-injection.md) |
+| Reflected XSS | [XSS — Theory to Real Case](../theory-to-real-case/xss.md) |
+| XSS rendering context | [XSS Rendering Context](../output-encyclopedia/xss-rendering-context.md) |
+| Error disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+| Sort/order injection concept | [SQL Injection — Theory to Real Case](../theory-to-real-case/sql-injection.md) |
+| Excessive response | [Access Control Response](../output-encyclopedia/access-control-response.md) |
+| Debug error / stack trace | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+| HTTP status behavior | [HTTP Status](../output-encyclopedia/http-status-code.md) |
+
 ## Test Aman Awal
 
 ### 1. SQL error indicator
