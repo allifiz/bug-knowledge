@@ -4,6 +4,16 @@ User enumeration terjadi ketika aplikasi membocorkan apakah sebuah email/usernam
 
 Bug ini sering muncul di login, register, forgot password, dan invite.
 
+## Tool Level
+
+| Kebutuhan | Jawaban |
+|---|---|
+| Bisa tanpa Burp? | Ya |
+| Minimal tools | Browser biasa |
+| Disarankan | DevTools Network untuk melihat status code dan response |
+| Proxy tool | Opsional |
+| Butuh akun testing? | Satu email milik sendiri dan satu email dummy |
+
 ## Kapan Curiga
 
 Endpoint umum:
@@ -24,11 +34,33 @@ Ciri-ciri:
 - Pesan error terlalu spesifik
 ```
 
-## Test Aman
+## Cara Mencoba Secara Aman
 
-Gunakan email milik sendiri dan email dummy yang jelas tidak terdaftar.
+### Mode 1 — Browser biasa
 
-### Login
+```txt
+1. Siapkan satu email milikmu yang memang terdaftar.
+2. Siapkan satu email dummy yang jelas tidak terdaftar.
+3. Buka halaman login atau forgot password.
+4. Masukkan email dummy.
+5. Catat pesan yang muncul.
+6. Masukkan email milikmu sendiri dengan password salah atau request reset.
+7. Catat pesan yang muncul.
+8. Bandingkan apakah pesan valid dan invalid berbeda.
+```
+
+### Mode 2 — DevTools Network
+
+```txt
+1. Buka DevTools → Network.
+2. Jalankan request dengan email dummy.
+3. Klik request login/forgot-password.
+4. Catat status code dan response.
+5. Jalankan request dengan email milik sendiri.
+6. Bandingkan status code, response body, dan pesan error.
+```
+
+## Contoh Test Login
 
 Email tidak terdaftar:
 
@@ -55,6 +87,14 @@ Response harus generic.
 ```json
 {
   "message": "Invalid email or password"
+}
+```
+
+Untuk forgot password:
+
+```json
+{
+  "message": "If the email exists, a reset link will be sent"
 }
 ```
 
@@ -93,18 +133,30 @@ atau forgot password:
 | Status code berbeda | Indikasi tambahan |
 | Response time beda jauh | Perlu hati-hati, bisa false positive |
 
-## Impact
+## Evidence yang Perlu Disimpan
 
-User enumeration bisa membantu attacker menyusun daftar akun valid untuk serangan lanjutan seperti phishing atau credential stuffing.
+```txt
+- Request email dummy
+- Response email dummy
+- Request email milik sendiri
+- Response email milik sendiri
+- Status code
+- Screenshot pesan jika lewat UI
+- Sensor email jika perlu
+```
 
-## Next Step Aman
+## Kapan Harus Stop
 
 ```txt
 - Jangan enumerasi banyak email
-- Gunakan email milik sendiri dan satu email dummy
-- Simpan perbandingan response
+- Jangan memakai daftar email orang lain
 - Jangan mencoba password akun orang lain
+- Cukup gunakan email sendiri dan satu email dummy
 ```
+
+## Impact
+
+User enumeration bisa membantu attacker menyusun daftar akun valid untuk serangan lanjutan seperti phishing atau credential stuffing.
 
 ## Recommendation
 
