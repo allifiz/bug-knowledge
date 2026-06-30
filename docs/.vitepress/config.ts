@@ -39,9 +39,14 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/feature-map/' },
           { text: 'Login', link: '/feature-map/login' },
+          { text: 'Register', link: '/feature-map/register' },
+          { text: 'Forgot Password', link: '/feature-map/forgot-password' },
           { text: 'Profile', link: '/feature-map/profile' },
           { text: 'Upload', link: '/feature-map/upload' },
-          { text: 'Invoice & Order', link: '/feature-map/invoice-order' }
+          { text: 'Search & Filter', link: '/feature-map/search-filter' },
+          { text: 'Invoice & Order', link: '/feature-map/invoice-order' },
+          { text: 'Team & Role', link: '/feature-map/team-role' },
+          { text: 'Export & Download', link: '/feature-map/export-download' }
         ]
       },
       {
@@ -51,8 +56,12 @@ export default defineConfig({
           { text: 'Access Control', link: '/bug-tree/access-control/' },
           { text: 'IDOR Read', link: '/bug-tree/access-control/idor-read' },
           { text: 'IDOR Write', link: '/bug-tree/access-control/idor-write' },
+          { text: 'Mass Assignment', link: '/bug-tree/access-control/mass-assignment' },
           { text: 'Authentication', link: '/bug-tree/authentication/' },
-          { text: 'Input Validation', link: '/bug-tree/input-validation/' }
+          { text: 'User Enumeration', link: '/bug-tree/authentication/user-enumeration' },
+          { text: 'Input Validation', link: '/bug-tree/input-validation/' },
+          { text: 'File Exposure', link: '/bug-tree/input-validation/file-exposure' },
+          { text: 'Business Logic', link: '/bug-tree/business-logic/' }
         ]
       },
       {
@@ -76,8 +85,7 @@ export default defineConfig({
         text: 'Report Template',
         items: [
           { text: 'General', link: '/report-template/general' },
-          { text: 'IDOR', link: '/report-template/idor' },
-          { text: 'SQLi Indicator', link: '/report-template/sqli-indicator' }
+          { text: 'IDOR', link: '/report-template/idor' }
         ]
       }
     ],
