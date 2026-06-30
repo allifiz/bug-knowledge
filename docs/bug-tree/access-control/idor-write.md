@@ -4,6 +4,24 @@ IDOR Write terjadi ketika user bisa mengubah, menghapus, membatalkan, atau menja
 
 Impact IDOR Write biasanya lebih tinggi dibanding IDOR Read karena ada perubahan data.
 
+Contoh sederhana:
+
+```txt
+Akun A punya alamat ID 77.
+Akun B seharusnya tidak boleh mengubah alamat itu.
+Tapi request dari Akun B berhasil mengubah alamat Akun A.
+```
+
+## Tool Level
+
+| Kebutuhan | Jawaban |
+|---|---|
+| Bisa tanpa Burp? | Sebagian, tapi kurang nyaman |
+| Minimal tools | DevTools Network + dua akun testing |
+| Disarankan | API Client / Proxy Tool |
+| Proxy tool | Opsional, membantu mengganti token/session antar akun |
+| Butuh akun testing? | Ya, dua akun milik sendiri |
+
 ## Endpoint Pattern
 
 ```txt
@@ -24,11 +42,34 @@ PATCH /api/team/member/{id}/role
 - Resource seharusnya milik user tertentu
 ```
 
-## Test Aman
+## Cara Mencoba Secara Aman
 
-Gunakan resource milik akun A, lalu coba aksi dari akun B.
+### Mode 1 — DevTools Network
 
-### Request normal akun A
+```txt
+1. Buat dua akun testing: Akun A dan Akun B.
+2. Login sebagai Akun A.
+3. Buat resource testing, misalnya alamat, profile tambahan, draft, atau file dummy.
+4. Buka DevTools → Network.
+5. Lakukan update normal pada resource Akun A.
+6. Catat endpoint, method, payload, dan ID resource.
+7. Login sebagai Akun B.
+8. Coba kirim aksi ke ID resource Akun A.
+9. Cek apakah server menolak atau malah mengubah data.
+```
+
+### Mode 2 — API Client / Proxy
+
+```txt
+1. Copy request update/delete/action dari Akun A.
+2. Ganti token/session menjadi milik Akun B.
+3. Gunakan resource dummy milik sendiri.
+4. Kirim request sekali untuk validasi.
+5. Cek before/after resource.
+6. Jangan lakukan aksi irreversible pada data nyata.
+```
+
+## Request Normal Akun A
 
 ```http
 PATCH /api/addresses/77
@@ -40,7 +81,7 @@ Content-Type: application/json
 }
 ```
 
-### Request test akun B
+## Request Test Akun B
 
 ```http
 PATCH /api/addresses/77
@@ -80,30 +121,39 @@ HTTP/1.1 200 OK
 
 ## Cara Membaca Hasil
 
-Jika akun B bisa mengubah resource akun A, kemungkinan:
+| Hasil | Makna |
+|---|---|
+| Akun B mendapat 403/404 | Kemungkinan aman |
+| Akun B mendapat 200 tapi tidak ada perubahan | Perlu validasi lagi |
+| Akun B berhasil mengubah resource Akun A | Suspicious, kemungkinan IDOR Write |
+| Aksi delete/cancel/approve berhasil | Impact bisa lebih tinggi |
+
+## Evidence yang Perlu Disimpan
 
 ```txt
-IDOR Write / Broken Object Level Authorization
+- Resource dibuat oleh Akun A
+- Request normal dari Akun A
+- Request aksi dari Akun B
+- Response berhasil jika tidak seharusnya
+- Bukti before/after resource berubah
+- Sensor token, cookie, dan data sensitif
 ```
 
-Jika aksi yang dilakukan adalah delete/cancel/approve, impact bisa lebih besar.
-
-## Next Step Aman
+## Kapan Harus Stop
 
 ```txt
-- Gunakan resource milik sendiri
+- Gunakan resource dummy milik sendiri
 - Jangan ubah data user asli
-- Jangan melakukan aksi irreversible pada target nyata
-- Simpan request dan response
-- Jelaskan before/after dengan jelas
+- Jangan melakukan delete/cancel/approve irreversible pada target nyata
+- Jangan enumerate banyak ID
+- Cukup buktikan satu perubahan aman
 ```
 
-## Evidence
+## Recommendation
 
 ```txt
-- Resource dibuat oleh akun A
-- Request aksi dari akun B
-- Response berhasil
-- Bukti resource berubah
-- Sensor data sensitif
+- Validasi ownership resource di backend sebelum aksi write
+- Pisahkan authorization read dan write/action
+- Return 403/404 untuk resource yang bukan milik user
+- Audit semua endpoint PATCH/PUT/DELETE/POST action
 ```
