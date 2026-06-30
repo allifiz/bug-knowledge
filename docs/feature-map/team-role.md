@@ -31,6 +31,19 @@ Business Logic
 └── Role downgrade/upgrade bypass
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| Vertical privilege escalation | [Access Control](../bug-tree/access-control/index.md) |
+| Horizontal privilege issue | [IDOR Read](../bug-tree/access-control/idor-read.md) |
+| Role tampering | [Mass Assignment](../bug-tree/access-control/mass-assignment.md) |
+| Unauthorized member removal | [IDOR Write](../bug-tree/access-control/idor-write.md) |
+| Object action authorization | [Access Control](../bug-tree/access-control/index.md) |
+| Invite abuse | [Business Logic](../bug-tree/business-logic/index.md) |
+| Reusing invite token | [SaaS Team Workspace Simulation](../real-case-simulation/saas-team-workspace.md) |
+| Role downgrade/upgrade bypass | [Team Role Scenario](../endpoint-scenarios/team-role.md) |
+
 ## Test Aman Awal
 
 ### 1. User biasa ubah role
