@@ -31,6 +31,20 @@ Access Control
 └── Replace file user lain
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| Public access to private file | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Weak file type validation | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Missing file size limit | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Old file still accessible | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Predictable file URL | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Path/internal storage disclosure | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Metadata leakage | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Download file user lain | [IDOR Read](../bug-tree/access-control/idor-read.md) |
+| Delete/replace file user lain | [IDOR Write](../bug-tree/access-control/idor-write.md) |
+
 ## Test Aman Awal
 
 ### 1. Public access check
