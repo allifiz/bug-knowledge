@@ -40,6 +40,26 @@ Access Control
     └── GraphQL global ID
 ```
 
+## Klik untuk Belajar
+
+| Bug | Cocok untuk | Halaman |
+|---|---|---|
+| IDOR read | profile, invoice, order, file download | [IDOR Read](./idor-read.md) |
+| IDOR write | update profile, cancel order, delete file | [IDOR Write](./idor-write.md) |
+| Mass assignment | field role/is_admin/status diterima | [Mass Assignment](./mass-assignment.md) |
+| Vertical privilege escalation | user biasa akses fitur admin | [Vertical Privilege Escalation](./vertical-privilege-escalation.md) |
+| Role tampering | role bisa diubah dari request | [Role Tampering](./role-tampering.md) |
+| Unauthorized action | approve/cancel/delete/change status tanpa izin | [Unauthorized Action](./unauthorized-action.md) |
+
+## Mulai dari Feature
+
+| Feature ditemukan | Mulai dari sini |
+|---|---|
+| Profile | [Feature Map: Profile](../../feature-map/profile.md) |
+| Invoice & Order | [Feature Map: Invoice & Order](../../feature-map/invoice-order.md) |
+| Team & Role | [Feature Map: Team & Role](../../feature-map/team-role.md) |
+| Export & Download | [Feature Map: Export & Download](../../feature-map/export-download.md) |
+
 ## Kapan Curiga
 
 Curiga jika endpoint:
