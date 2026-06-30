@@ -101,7 +101,11 @@ export default defineConfig({
         items: [
           { text: 'SQL Errors', link: '/output-encyclopedia/sql-errors' },
           { text: 'HTTP Status', link: '/output-encyclopedia/http-status-code' },
-          { text: 'Access Control Response', link: '/output-encyclopedia/access-control-response' }
+          { text: 'Access Control Response', link: '/output-encyclopedia/access-control-response' },
+          { text: 'XSS Rendering Context', link: '/output-encyclopedia/xss-rendering-context' },
+          { text: 'Redirect Headers', link: '/output-encyclopedia/redirect-headers' },
+          { text: 'Stack Trace', link: '/output-encyclopedia/stack-trace' },
+          { text: 'File Upload Output', link: '/output-encyclopedia/file-upload-output' }
         ]
       },
       {
