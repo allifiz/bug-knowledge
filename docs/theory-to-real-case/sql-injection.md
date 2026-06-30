@@ -10,6 +10,16 @@ User ID: 1
 
 Di real target, bentuknya lebih sering muncul di fitur search, filter, sort, login, detail data, atau export report.
 
+## Tool Level
+
+| Kebutuhan | Jawaban |
+|---|---|
+| Bisa tanpa Burp? | Ya, untuk indikator awal |
+| Minimal tools | Browser biasa |
+| Disarankan | DevTools Network untuk melihat status code dan response |
+| Proxy tool | Opsional |
+| Butuh akun testing? | Tidak selalu, tergantung endpoint |
+
 ## Bentuk Real Case
 
 Endpoint yang relevan:
@@ -50,6 +60,40 @@ Curiga jika:
 - status berubah jadi 500 ketika input tertentu dikirim;
 - response menampilkan error database;
 - response normal dan response test berbeda drastis.
+```
+
+## Cara Mencoba Secara Aman
+
+### Mode 1 — Browser biasa
+
+```txt
+1. Cari fitur yang memakai input, misalnya search, filter, login, atau report.
+2. Coba input normal dulu.
+3. Catat output normalnya.
+4. Masukkan single quote sebagai indikator ringan.
+5. Lihat apakah aplikasi tetap memberi response aman atau muncul error database.
+6. Jangan lanjut ke payload dump, bypass, atau destructive.
+```
+
+### Mode 2 — DevTools Network
+
+```txt
+1. Buka DevTools → Network.
+2. Jalankan request normal.
+3. Catat endpoint, parameter, status code, dan response.
+4. Jalankan request test dengan input indikator ringan.
+5. Bandingkan response normal dan response test.
+6. Simpan error database jika muncul.
+```
+
+### Mode 3 — API Client / Proxy
+
+```txt
+1. Copy request normal dari DevTools.
+2. Ubah hanya satu parameter yang diuji.
+3. Kirim request test sekali.
+4. Bandingkan status code dan response.
+5. Stop jika sudah muncul error database yang jelas.
 ```
 
 ## Test 1 — Single Quote Detection
@@ -224,22 +268,7 @@ Indikasi jadi lebih kuat jika:
 - response berubah konsisten berdasarkan input.
 ```
 
-## Next Step Aman
-
-Jika ada indikasi SQLi:
-
-```txt
-- Simpan request normal
-- Simpan request test
-- Simpan response error
-- Catat parameter terdampak
-- Jangan dump database
-- Jangan mengambil data user
-- Jangan menjalankan payload destructive
-- Tulis report sebagai possible SQL injection atau database error disclosure sesuai bukti
-```
-
-## Evidence
+## Evidence yang Perlu Disimpan
 
 ```txt
 - URL dan parameter terdampak
@@ -247,8 +276,19 @@ Jika ada indikasi SQLi:
 - Response normal
 - Request test
 - Response error
+- Status code
 - Screenshot error database jika ada
 - Penjelasan kenapa output mencurigakan
+```
+
+## Kapan Harus Stop
+
+```txt
+- Jangan dump database
+- Jangan mengambil data user
+- Jangan menjalankan payload destructive
+- Jangan bypass login atau akses data di luar izin
+- Cukup validasi indikator awal dan tulis report sesuai bukti
 ```
 
 ## Kesimpulan Report
@@ -264,3 +304,7 @@ Jika sudah ada behavior yang konsisten menunjukkan input memengaruhi query:
 ```txt
 SQL Injection Indicator on [parameter]
 ```
+
+## Lanjut Baca
+
+- [SQL Errors](../output-encyclopedia/sql-errors.md)
