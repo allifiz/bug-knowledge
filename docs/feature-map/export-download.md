@@ -40,12 +40,12 @@ Information Disclosure
 | Download file user lain | [IDOR Read](../bug-tree/access-control/idor-read.md) |
 | Public access to private file | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
 | Predictable file URL | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
-| Export data tanpa permission | [Access Control](../bug-tree/access-control/index.md) |
-| Path traversal indicator | [Input Validation](../bug-tree/input-validation/index.md) |
-| Error/path disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
-| Excessive export data | [Access Control Response](../output-encyclopedia/access-control-response.md) |
-| Internal path leakage | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
-| Sensitive metadata exposure | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Export data tanpa permission | [Unauthorized Action](../bug-tree/access-control/unauthorized-action.md) |
+| Path traversal indicator | [Path Traversal Indicator](../bug-tree/input-validation/path-traversal-indicator.md) |
+| Error/path disclosure | [Internal Path Leakage](../bug-tree/information-disclosure/internal-path-leakage.md) |
+| Excessive export data | [Excessive Response](../bug-tree/information-disclosure/excessive-response.md) |
+| Internal path leakage | [Internal Path Leakage](../bug-tree/information-disclosure/internal-path-leakage.md) |
+| Sensitive metadata exposure | [Sensitive Metadata Exposure](../bug-tree/information-disclosure/sensitive-metadata-exposure.md) |
 
 ## Test Aman Awal
 
