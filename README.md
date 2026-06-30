@@ -1,23 +1,46 @@
 # Bug Knowledge
 
-Panduan bug bounty berbahasa Indonesia yang menerjemahkan teori vulnerability dari lab dan referensi security ke skenario real-world.
+Bug Knowledge adalah panduan bug bounty berbahasa Indonesia yang fokus ke praktik aman di dunia nyata.
 
-Project ini dibuat untuk membantu pemula memahami:
+Banyak materi security berhenti di teori atau payload. Repo ini mencoba menjembatani bagian yang sering bikin pemula bingung:
 
-- mulai dari mana ketika masuk program bug bounty baru;
-- cara membaca scope dan rules;
+```txt
+Aku nemu fitur ini. Harus cek apa?
+Aku perlu tool apa?
+Output seperti ini aman atau mencurigakan?
+Kapan aku harus berhenti?
+Evidence apa yang layak masuk report?
+```
+
+Targetnya sederhana: membantu pembaca memahami cara berpikir bug hunter tanpa keluar dari jalur legal dan etis.
+
+## Untuk Siapa?
+
+Repo ini dibuat untuk:
+
+- pemula yang baru masuk bug bounty;
+- developer yang ingin paham pola bug dari sisi backend/frontend;
+- pembaca yang sudah pernah belajar dari lab, tapi bingung menerapkannya ke fitur nyata;
+- siapa pun yang butuh referensi cepat untuk membaca request, response, output, dan evidence.
+
+## Yang Dipelajari
+
+Di dalam repo ini, kamu akan menemukan materi tentang:
+
+- cara membaca scope dan rules program;
 - cara mapping fitur dan endpoint;
-- bug apa yang mungkin muncul pada suatu fitur;
-- test aman yang bisa dilakukan;
+- bug apa yang mungkin muncul pada fitur tertentu;
+- tool apa yang dibutuhkan untuk mulai testing;
+- langkah verbal untuk mencoba bug secara aman;
 - expected output vs suspicious output;
 - cara membaca hasil test;
-- evidence apa yang perlu dikumpulkan;
-- kapan harus berhenti testing;
+- evidence yang perlu disimpan;
+- kapan harus berhenti;
 - cara menulis report yang rapi.
 
-> Fokus project ini adalah edukasi, legalitas, dan safe testing. Tidak ada brute force massal, credential stuffing, auto exploit, data dumping, atau instruksi destructive.
+> Fokus repo ini adalah edukasi dan safe testing. Tidak ada brute force massal, credential stuffing, auto exploit, data dumping, atau instruksi destructive.
 
-## Stack
+## Menjalankan Lokal
 
 Website dokumentasi ini memakai VitePress.
 
@@ -42,44 +65,46 @@ docs/
 ├── bug-tree/
 ├── theory-to-real-case/
 ├── output-encyclopedia/
+├── contribution/
 └── report-template/
 ```
 
 ## Prinsip Konten
 
-Setiap materi bug idealnya memakai format:
+Materi di sini tidak hanya menjawab “bug ini apa”, tapi juga “gimana cara mulai ngeceknya dengan aman”.
+
+Format ideal halaman bug:
 
 ```txt
 1. Ringkasan pemula
-2. Kapan harus curiga
-3. Muncul di fitur apa
-4. Endpoint pattern
-5. Test aman
-6. Request normal
-7. Request test
-8. Expected secure output
-9. Suspicious output + contoh nyata
-10. Cara membaca hasil
-11. False positive umum
-12. Next step aman
+2. Contoh sederhana
+3. Tool Level
+4. Kapan harus curiga
+5. Endpoint/feature yang relevan
+6. Cara mencoba secara aman
+7. Request normal
+8. Request test
+9. Expected secure output
+10. Suspicious output
+11. Cara membaca hasil
+12. Evidence yang perlu disimpan
 13. Kapan harus stop
-14. Evidence
-15. Template report
-16. Referensi
+14. Recommendation
 ```
 
 ## Kontribusi
 
-Kontribusi sangat terbuka selama mengikuti prinsip legal dan edukatif.
+Kontribusi terbuka selama tetap legal, aman, dan edukatif.
 
 Yang boleh ditambahkan:
 
-- real-world case simulation;
+- simulasi real-world yang aman;
 - safe detection payload;
 - contoh output error umum;
 - checklist analisis;
 - report template;
-- referensi resmi/edukatif.
+- referensi resmi/edukatif;
+- penjelasan tool untuk pemula.
 
 Yang tidak boleh ditambahkan:
 
@@ -89,3 +114,10 @@ Yang tidak boleh ditambahkan:
 - dumping database;
 - exploit destructive;
 - instruksi menyerang target di luar scope.
+
+Sebelum menulis materi baru, baca:
+
+```txt
+docs/contribution/content-template.md
+docs/contribution/content-style-guide.md
+```
