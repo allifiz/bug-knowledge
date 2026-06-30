@@ -24,7 +24,12 @@ export default defineConfig({
         items: [
           { text: 'Overview', link: '/mulai-dari-sini/' },
           { text: 'Aturan Legal', link: '/mulai-dari-sini/aturan-legal' },
-          { text: 'Membaca Scope', link: '/mulai-dari-sini/membaca-scope' }
+          { text: 'Membaca Scope', link: '/mulai-dari-sini/membaca-scope' },
+          { text: 'Tools untuk Pemula', link: '/mulai-dari-sini/tools-untuk-pemula' },
+          { text: 'Cara Baca Request & Response', link: '/mulai-dari-sini/cara-baca-request-response' },
+          { text: 'Cara Pakai DevTools Network', link: '/mulai-dari-sini/cara-pakai-devtools-network' },
+          { text: 'Cara Copy as cURL', link: '/mulai-dari-sini/cara-copy-as-curl' },
+          { text: 'Kapan Butuh Burp', link: '/mulai-dari-sini/kapan-butuh-burp' }
         ]
       },
       {
