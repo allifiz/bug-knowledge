@@ -4,6 +4,16 @@ Missing rate limit terjadi ketika endpoint sensitif menerima banyak request beru
 
 Topik ini sering muncul di login, forgot password, OTP, email verification, invite, resend code, dan coupon apply.
 
+## Tool Level
+
+| Kebutuhan | Jawaban |
+|---|---|
+| Bisa tanpa Burp? | Ya, untuk observasi kecil |
+| Minimal tools | Browser biasa |
+| Disarankan | DevTools Network untuk melihat status code dan response |
+| Proxy tool | Tidak wajib, jangan gunakan untuk brute force |
+| Butuh akun testing? | Ya, akun sendiri |
+
 ## Kapan Curiga
 
 Endpoint umum:
@@ -20,7 +30,7 @@ POST /api/coupon/apply
 Ciri-ciri:
 
 ```txt
-- banyak percobaan gagal tetap mendapat response normal;
+- beberapa percobaan gagal tetap mendapat response normal;
 - tidak ada delay;
 - tidak ada temporary lock;
 - tidak ada captcha/challenge;
@@ -28,18 +38,36 @@ Ciri-ciri:
 - response tetap cepat dan konsisten.
 ```
 
-## Test Aman
+## Cara Mencoba Secara Aman
 
-Lakukan percobaan kecil sesuai rules program.
-
-Jangan memakai wordlist, credential orang lain, atau request massal.
-
-Contoh observasi aman:
+### Mode 1 — Browser biasa
 
 ```txt
-1. Gunakan akun milik sendiri.
-2. Kirim beberapa percobaan gagal secara manual.
-3. Catat apakah ada delay, lockout, captcha, atau 429.
+1. Gunakan akun testing milik sendiri.
+2. Buka halaman login, forgot password, OTP, atau resend code.
+3. Lakukan beberapa percobaan gagal secara manual.
+4. Amati apakah aplikasi mulai memberi delay, captcha, lockout, cooldown, atau pesan terlalu banyak percobaan.
+5. Jangan lanjut jika rules program membatasi percobaan.
+```
+
+### Mode 2 — DevTools Network
+
+```txt
+1. Buka DevTools → Network.
+2. Jalankan percobaan manual secara terbatas.
+3. Klik request yang relevan.
+4. Lihat status code dan response.
+5. Catat apakah muncul 429, delay, lockout, captcha, atau cooldown.
+```
+
+### Mode 3 — API Client / Proxy
+
+```txt
+1. Gunakan hanya untuk mengulang request secara terbatas.
+2. Jangan memakai wordlist.
+3. Jangan menjalankan request massal.
+4. Jangan menggunakan akun orang lain.
+5. Simpan bukti minimal jika tidak ada pembatasan terlihat.
 ```
 
 ## Expected Secure Output
@@ -69,7 +97,7 @@ Bisa juga:
 ## Suspicious Output
 
 ```txt
-Banyak percobaan gagal tetap mendapat response normal tanpa pembatasan yang terlihat.
+Beberapa percobaan gagal tetap mendapat response normal tanpa pembatasan yang terlihat.
 ```
 
 Contoh:
@@ -91,17 +119,17 @@ muncul terus tanpa delay/limit.
 | Ada limit hanya per IP | Cek apakah cukup sesuai konteks |
 | Ada limit hanya per akun | Cek apakah endpoint masih bisa disalahgunakan dengan variasi input |
 
-## Evidence
+## Evidence yang Perlu Disimpan
 
 ```txt
-- endpoint terdampak
-- jumlah percobaan kecil yang dilakukan
-- timestamp percobaan
-- response yang tetap normal
-- tidak ada 429/delay/lockout
+- Endpoint terdampak
+- Jumlah percobaan kecil yang dilakukan
+- Timestamp percobaan
+- Response yang tetap normal
+- Tidak ada 429/delay/lockout/cooldown
 ```
 
-## Kapan Stop
+## Kapan Harus Stop
 
 ```txt
 - Jangan brute force massal
@@ -109,6 +137,7 @@ muncul terus tanpa delay/limit.
 - Jangan mencoba akun orang lain
 - Jangan membebani server
 - Ikuti batas rules program
+- Jika sudah terlihat tidak ada limit pada percobaan kecil, stop dan tulis evidence
 ```
 
 ## Recommendation
