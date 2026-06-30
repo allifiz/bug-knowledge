@@ -33,6 +33,20 @@ Information Disclosure
 └── Sensitive metadata exposure
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| Download file user lain | [IDOR Read](../bug-tree/access-control/idor-read.md) |
+| Public access to private file | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Predictable file URL | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+| Export data tanpa permission | [Access Control](../bug-tree/access-control/index.md) |
+| Path traversal indicator | [Input Validation](../bug-tree/input-validation/index.md) |
+| Error/path disclosure | [Stack Trace](../output-encyclopedia/stack-trace.md) |
+| Excessive export data | [Access Control Response](../output-encyclopedia/access-control-response.md) |
+| Internal path leakage | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+| Sensitive metadata exposure | [File Upload Output](../output-encyclopedia/file-upload-output.md) |
+
 ## Test Aman Awal
 
 ### 1. Download file user lain
