@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: '/bug-knowledge/',
   title: 'Bug Knowledge',
   description: 'Panduan bug bounty Indonesia dari teori ke real case.',
   lang: 'id-ID',
