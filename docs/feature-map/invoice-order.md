@@ -42,12 +42,12 @@ Information Disclosure
 |---|---|
 | IDOR read order/invoice | [IDOR Read](../bug-tree/access-control/idor-read.md) |
 | IDOR download invoice PDF | [Invoice Download Scenario](../endpoint-scenarios/invoice-download.md) |
-| Cancel/update order user lain | [IDOR Write](../bug-tree/access-control/idor-write.md) |
-| Price manipulation | [Business Logic](../bug-tree/business-logic/index.md) |
-| Quantity manipulation | [Business Logic](../bug-tree/business-logic/index.md) |
-| Coupon reuse | [Coupon Apply Scenario](../endpoint-scenarios/coupon-apply.md) |
-| Workflow bypass | [Business Logic](../bug-tree/business-logic/index.md) |
-| Excessive invoice response | [Access Control Response](../output-encyclopedia/access-control-response.md) |
+| Cancel/update order user lain | [Unauthorized Action](../bug-tree/access-control/unauthorized-action.md) |
+| Price manipulation | [Price Manipulation](../bug-tree/business-logic/price-manipulation.md) |
+| Quantity manipulation | [Quantity Manipulation](../bug-tree/business-logic/quantity-manipulation.md) |
+| Coupon reuse | [Coupon Reuse](../bug-tree/business-logic/coupon-reuse.md) |
+| Workflow bypass | [Workflow Bypass](../bug-tree/business-logic/workflow-bypass.md) |
+| Excessive invoice response | [Excessive Response](../bug-tree/information-disclosure/excessive-response.md) |
 | Predictable/public invoice file | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
 
 ## Test Aman Awal
