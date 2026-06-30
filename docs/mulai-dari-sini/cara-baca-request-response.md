@@ -1,16 +1,20 @@
 # Cara Baca Request & Response
 
-Bug bounty web banyak bergantung pada kemampuan membaca request dan response.
+Hampir semua analisis web security berawal dari sini: membaca request dan response.
 
-Pemula tidak harus langsung hafal payload. Mulai dari memahami:
+Kamu tidak harus langsung hafal banyak payload. Kalau belum bisa membaca apa yang dikirim browser dan apa yang dibalas server, payload apa pun akan terasa seperti tebak-tebakan.
+
+Gambaran sederhananya:
 
 ```txt
-siapa mengirim apa → ke endpoint mana → server membalas apa
+browser mengirim sesuatu → server memproses → server membalas sesuatu
 ```
+
+Dari balasan itu, kita mulai menilai apakah perilakunya normal, ditolak dengan benar, atau justru mencurigakan.
 
 ## Request Itu Apa?
 
-Request adalah permintaan dari browser/client ke server.
+Request adalah permintaan dari browser atau client ke server.
 
 Contoh:
 
@@ -20,15 +24,22 @@ Host: app.example.com
 Authorization: Bearer token-user
 ```
 
-Artinya:
+Kalau dibaca manusia:
 
 ```txt
-Client meminta data user dengan ID 123.
+Client sedang meminta data user dengan ID 123.
 ```
+
+Dari satu request saja, sudah ada beberapa pertanyaan penting:
+
+- endpoint ini untuk fitur apa?
+- ID `123` itu milik siapa?
+- token yang dipakai punya izin apa?
+- response-nya nanti berisi data private atau public?
 
 ## Response Itu Apa?
 
-Response adalah jawaban server.
+Response adalah jawaban server setelah menerima request.
 
 Contoh:
 
@@ -44,55 +55,62 @@ Content-Type: application/json
 }
 ```
 
-Artinya:
+Kalau dibaca sederhana:
 
 ```txt
-Server berhasil mengembalikan data.
+Server berhasil mengembalikan data user.
 ```
+
+Yang perlu diperhatikan bukan cuma datanya, tapi juga status code, header, dan apakah response itu pantas diberikan ke user yang sedang login.
 
 ## Bagian Request yang Perlu Dibaca
 
 | Bagian | Contoh | Kenapa Penting |
 |---|---|---|
 | Method | GET, POST, PATCH, DELETE | Menunjukkan jenis aksi |
-| URL/path | /api/users/123 | Menunjukkan resource/endpoint |
-| Query | ?search=test | Input dari URL |
-| Header | Authorization, Cookie | Identitas/session/auth |
+| URL/path | /api/users/123 | Menunjukkan resource atau endpoint |
+| Query | ?search=test | Input yang dikirim lewat URL |
+| Header | Authorization, Cookie | Identitas, session, atau token |
 | Body/Payload | JSON/form-data | Data yang dikirim user |
 
 ## Bagian Response yang Perlu Dibaca
 
 | Bagian | Contoh | Makna |
 |---|---|---|
-| Status code | 200, 401, 403, 404, 500 | Hasil umum request |
-| Header | Location, Set-Cookie | Redirect/session/content type |
+| Status code | 200, 401, 403, 404, 500 | Gambaran hasil request |
+| Header | Location, Set-Cookie | Redirect, session, content type |
 | Body | JSON/HTML/error | Data atau pesan dari server |
 | Content-Type | application/json, text/html | Jenis response |
 
-## Status Code Dasar
+## Status Code yang Paling Sering Muncul
 
-| Status | Makna Pemula |
+| Status | Cara membacanya |
 |---|---|
 | 200 | Request berhasil |
 | 201 | Data berhasil dibuat |
-| 400 | Request salah |
-| 401 | Belum login/token tidak valid |
-| 403 | Login, tapi tidak punya izin |
-| 404 | Data/endpoint tidak ditemukan atau disembunyikan |
+| 400 | Request dianggap salah |
+| 401 | Belum login atau token tidak valid |
+| 403 | Sudah login, tapi tidak punya izin |
+| 404 | Data/endpoint tidak ditemukan, atau sengaja disembunyikan |
 | 429 | Terlalu banyak request |
 | 500 | Error internal server |
 
+Status code tidak bisa berdiri sendiri. Tetap lihat konteksnya.
+
+Misalnya, `404` pada IDOR bisa saja berarti data benar-benar tidak ada, tapi bisa juga strategi aman untuk menyembunyikan resource yang bukan milik user.
+
 ## Cara Berpikir Saat Melihat Request
 
-Tanyakan:
+Biasakan bertanya seperti ini:
 
 ```txt
-1. Endpoint ini untuk fitur apa?
-2. Ada ID resource tidak?
-3. Ada data user lain tidak?
-4. Ada field sensitif tidak?
+1. Endpoint ini milik fitur apa?
+2. Ada ID resource di URL, query, atau body?
+3. Resource itu milik siapa?
+4. Token/cookie yang dipakai punya role apa?
 5. Response normalnya seperti apa?
-6. Response berubah kalau input diganti tidak?
+6. Kalau input diganti sedikit, response berubah seperti apa?
+7. Apakah response itu membocorkan data, error, atau izin yang tidak seharusnya?
 ```
 
 ## Contoh Membaca IDOR
@@ -104,20 +122,26 @@ GET /api/invoices/991
 Authorization: Bearer token-akun-b
 ```
 
-Pertanyaan:
+Pertanyaan utamanya:
 
 ```txt
 Invoice 991 ini milik siapa?
-Akun B boleh melihat invoice ini tidak?
+Akun B memang boleh melihat invoice ini?
 ```
 
-Expected secure response:
+Response yang aman biasanya:
 
 ```http
 HTTP/1.1 403 Forbidden
 ```
 
-Suspicious response:
+atau:
+
+```http
+HTTP/1.1 404 Not Found
+```
+
+Response yang mencurigakan:
 
 ```http
 HTTP/1.1 200 OK
@@ -130,6 +154,8 @@ HTTP/1.1 200 OK
 }
 ```
 
+Kalau Akun B bisa melihat invoice Akun A, itu sinyal kuat adanya masalah access control.
+
 ## Contoh Membaca Error Disclosure
 
 Request:
@@ -138,17 +164,15 @@ Request:
 GET /api/products?search='
 ```
 
-Suspicious response:
+Response mencurigakan:
 
 ```txt
 SQL syntax error
 ```
 
-Makna:
+Artinya belum tentu langsung SQL Injection valid. Tapi itu indikator bahwa input mungkin menyentuh query database atau error database bocor ke user.
 
-```txt
-Input masuk ke query database secara tidak aman atau error database bocor.
-```
+Di tahap ini, cukup simpan request dan response. Jangan lanjut ke payload yang mengambil data.
 
 ## Evidence yang Perlu Dicatat
 
@@ -159,15 +183,15 @@ Input masuk ke query database secara tidak aman atau error database bocor.
 - Response test
 - Status code
 - Parameter yang berubah
-- Akun/role yang digunakan
+- Akun atau role yang digunakan
 ```
 
 ## Kesalahan Pemula
 
-```txt
-- Hanya melihat tampilan halaman, tidak melihat response
-- Tidak mencatat request normal
-- Mengubah terlalu banyak bagian sekaligus
-- Tidak tahu beda 401 dan 403
-- Langsung mencari payload tanpa tahu endpoint melakukan apa
-```
+- hanya melihat tampilan halaman, tapi tidak melihat response;
+- tidak menyimpan request normal sebagai pembanding;
+- mengubah terlalu banyak bagian sekaligus;
+- belum paham beda 401 dan 403;
+- langsung mencari payload tanpa tahu endpoint itu melakukan apa.
+
+Semakin rapi kamu membaca request dan response, semakin kecil kemungkinan kamu salah klaim bug.
