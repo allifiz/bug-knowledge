@@ -36,6 +36,20 @@ Information Disclosure
 └── Public invoice PDF
 ```
 
+### Klik untuk belajar
+
+| Bug | Buka halaman |
+|---|---|
+| IDOR read order/invoice | [IDOR Read](../bug-tree/access-control/idor-read.md) |
+| IDOR download invoice PDF | [Invoice Download Scenario](../endpoint-scenarios/invoice-download.md) |
+| Cancel/update order user lain | [IDOR Write](../bug-tree/access-control/idor-write.md) |
+| Price manipulation | [Business Logic](../bug-tree/business-logic/index.md) |
+| Quantity manipulation | [Business Logic](../bug-tree/business-logic/index.md) |
+| Coupon reuse | [Coupon Apply Scenario](../endpoint-scenarios/coupon-apply.md) |
+| Workflow bypass | [Business Logic](../bug-tree/business-logic/index.md) |
+| Excessive invoice response | [Access Control Response](../output-encyclopedia/access-control-response.md) |
+| Predictable/public invoice file | [File Exposure](../bug-tree/input-validation/file-exposure.md) |
+
 ## Test Aman Awal
 
 ### 1. IDOR invoice read
