@@ -1,18 +1,18 @@
 # Cara Copy as cURL
 
-Copy as cURL adalah cara mengambil request dari browser lalu menjalankannya ulang di terminal atau API client.
+Copy as cURL adalah cara mengambil request dari browser lalu menyimpannya dalam bentuk command `curl`.
 
-Ini berguna untuk belajar karena kamu bisa melihat request secara utuh.
+Ini berguna ketika kamu ingin melihat request secara utuh, memindahkannya ke API client, atau mengulang request dengan perubahan kecil.
 
-## Kapan Dipakai
+## Kapan Dipakai?
 
-```txt
-- ingin mengulang request yang sama;
-- ingin menyimpan request sebagai evidence;
-- ingin memindahkan request ke Postman/Insomnia;
-- ingin melihat header, cookie, dan body request;
-- ingin mengubah satu bagian request secara manual.
-```
+Pakai Copy as cURL ketika kamu ingin:
+
+- menyimpan request normal sebagai pembanding;
+- mengulang request yang sama;
+- memindahkan request ke Postman atau Insomnia;
+- melihat header, cookie, dan body request;
+- mengubah satu bagian request secara manual.
 
 ## Cara Copy as cURL dari Browser
 
@@ -20,15 +20,18 @@ Ini berguna untuk belajar karena kamu bisa melihat request secara utuh.
 1. Buka DevTools.
 2. Masuk ke tab Network.
 3. Jalankan aksi di website.
-4. Klik kanan request yang relevan.
-5. Pilih Copy → Copy as cURL.
-6. Paste ke text editor dulu.
-7. Sensor token/cookie sebelum dibagikan.
+4. Cari request yang relevan.
+5. Klik kanan request itu.
+6. Pilih Copy → Copy as cURL.
+7. Paste ke text editor dulu.
+8. Sensor token dan cookie sebelum dibagikan.
 ```
 
-## Bagian yang Perlu Dipahami
+Jangan langsung share hasil copy mentah dari browser, karena biasanya berisi cookie, token, atau header sensitif.
 
-Contoh struktur cURL:
+## Membaca Struktur cURL
+
+Contoh:
 
 ```bash
 curl 'https://app.example.com/api/profile' \
@@ -37,79 +40,78 @@ curl 'https://app.example.com/api/profile' \
   --data-raw '{"name":"User Test"}'
 ```
 
-Makna:
+Cara membacanya:
 
 | Bagian | Arti |
 |---|---|
-| URL | Endpoint tujuan |
-| `-H` | Header request |
-| authorization/cookie | Identitas/session user |
-| content-type | Format body |
-| data-raw | Body yang dikirim |
+| URL | endpoint tujuan |
+| `-H` | header request |
+| authorization/cookie | identitas atau session user |
+| content-type | format body |
+| data-raw | body yang dikirim |
 
 ## Cara Menggunakan dengan Aman
 
 ```txt
-1. Jangan langsung menjalankan request berkali-kali.
-2. Baca dulu endpoint dan body-nya.
+1. Baca dulu endpoint dan body-nya.
+2. Jalankan ulang hanya jika memang perlu.
 3. Ubah satu bagian kecil saja.
 4. Gunakan akun testing sendiri.
-5. Jangan share token/cookie asli.
+5. Jangan share token atau cookie asli.
 ```
 
-## Contoh Pemakaian untuk Belajar
+## Contoh Pemakaian
 
 ### Membandingkan response
 
 ```txt
 1. Copy request normal.
-2. Jalankan ulang sekali.
-3. Ubah parameter yang sedang diuji.
-4. Bandingkan status code dan response.
+2. Simpan sebagai pembanding.
+3. Ubah satu parameter yang sedang diuji.
+4. Jalankan request test secara terbatas.
+5. Bandingkan status code dan response.
 ```
 
-### Mengubah field profile
+### Melihat request update profile
 
 ```txt
 1. Copy request update profile.
-2. Lihat body JSON.
+2. Lihat body JSON-nya.
 3. Pahami field yang memang dikirim UI.
-4. Jangan menambahkan field sensitif kecuali sesuai rules dan pada akun sendiri.
+4. Kalau ingin menguji field tambahan, lakukan hanya pada akun sendiri dan sesuai rules program.
 ```
 
-## Kapan Lebih Baik Pakai Postman/Insomnia
+## Kapan Lebih Enak Pakai Postman atau Insomnia?
 
-```txt
+Gunakan API client kalau:
+
 - request terlalu panjang;
-- perlu mengganti body berkali-kali secara manual;
+- kamu perlu mengganti body berkali-kali secara manual;
 - ingin menyimpan collection;
-- ingin membandingkan response lebih rapi.
-```
+- ingin membaca response dengan tampilan lebih rapi.
 
-## Kapan Lebih Baik Pakai Burp/Caido/ZAP
+## Kapan Lebih Enak Pakai Burp, Caido, atau ZAP?
 
-```txt
+Gunakan proxy tool kalau:
+
 - ingin intercept request sebelum dikirim;
-- ingin melihat semua request browser secara otomatis;
+- ingin melihat semua request browser dalam satu history;
 - ingin membandingkan request antar akun;
 - ingin workflow testing lebih cepat.
-```
 
-## Kesalahan Pemula
+## Kesalahan yang Sering Terjadi
 
-```txt
-- Share cURL lengkap berisi token/cookie.
-- Menjalankan request berulang tanpa memahami efeknya.
-- Mengubah banyak field sekaligus.
-- Tidak menyimpan request normal sebagai pembanding.
-```
+- membagikan cURL lengkap yang masih berisi token/cookie;
+- menjalankan request berulang tanpa memahami efeknya;
+- mengubah banyak field sekaligus;
+- tidak menyimpan request normal sebagai pembanding.
 
 ## Checklist Sebelum Menyimpan Evidence
 
 ```txt
-- Token/cookie sudah disensor
-- Email/ID sensitif disensor jika perlu
-- Request normal dan request test dipisah
-- Response penting disimpan
-- Tidak ada data user lain yang tersebar
+- Token/cookie sudah disensor.
+- Email/ID sensitif disensor jika perlu.
+- Request normal dan request test dipisah.
+- Response penting disimpan.
+- Tidak ada data user lain yang ikut tersebar.
 ```
